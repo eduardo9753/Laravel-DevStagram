@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
-     /*SON LOS DATOS QUE EL USUARIO NOS MANDA Y QUE SE ENCUENTRA EN LA BASE DE DATOS*/
+    /*SON LOS DATOS QUE EL USUARIO NOS MANDA Y QUE SE ENCUENTRA EN LA BASE DE DATOS*/
     protected $fillable = [
         'name',
         'email',
@@ -57,8 +57,34 @@ class User extends Authenticatable
     //RELACIONES USUARIO CON MULTIPLES LIKE
     public function likes()
     {
-       //UN USUARIO PUEDE TENER MULTIPLES LIKE
-       return $this->hasMany(Like::class);
+        //UN USUARIO PUEDE TENER MULTIPLES LIKE
+        return $this->hasMany(Like::class);
     }
-    
+
+    //SEGUIR DE UN USUARIO
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    //DEJAR DE SEGUIR UN USUARIO
+    public function afollowers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    //PERSONAS A QUIEN SIGO
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+
+
+    //COMPROBAR SI UN USUARIO YA SIGUE A OTRO
+    public function siguiendo(User $user)
+    {
+        //CON EL METODO DE followers VA COMPROBAR SI UN USUARIO YA ESTA SIGUIENDO A OTRO
+        //ESTE METODO RETORNA TRUE O FALSE
+        return $this->followers->contains($user->id);
+    }
 }

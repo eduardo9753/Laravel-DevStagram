@@ -19,7 +19,7 @@ class PostController extends Controller
     public function index(User $user)
     {
         //Data de los posts registrados por los usuarios
-        $posts = Post::where('user_id', $user->id)->paginate(4);
+        $posts = Post::where('user_id', $user->id)->latest()->paginate(4);
 
         //PASANDO LA VARIABLE 'user y posts' A LA VISTA PARA IMPRIMIR
         return view('dashboard', [

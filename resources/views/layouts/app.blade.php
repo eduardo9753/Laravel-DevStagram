@@ -6,28 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>DevStagram - @yield('titulo')</title>
-   
+
     <!--CSS Y ESTILOS TAILWIND.CSS CARPETA : "public/css/app.css"-->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!--JS  CARPETA : "public/js/app.js"-->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!--DIRECTIVA STACK PARA LLAMAR A ESTILOS CDN EXTERNOS PARA NUESTRA PAGINA 
+    <!--DIRECTIVA STACK PARA LLAMAR A ESTILOS CDN EXTERNOS PARA NUESTRA PAGINA
     LA RUTA DEL CDN DEL CSS ESTA EN 'views/posts/create.blade.php'
     -->
     @stack('styles')
     @stack('script')
-    
+
 
     <!--CARPETA RESOURCES "PENDIENTES"-->
-    
+
 </head>
 
 <body class="bg-gray-100">
     <header class="p-3 border-b bg-white shadow">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-3xl font-black">
-                <a href="/">devStagram</a>
+                <a href="{{ route('home') }}">devStagram</a>
             </h1>
 
 

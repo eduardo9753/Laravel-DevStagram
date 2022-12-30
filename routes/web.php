@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
@@ -24,10 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 
 /*VISTA PRINCIPAL - CUANDO CARGA LA PAGINA*/
-
-Route::get('/', function () {
-    return view('principal');
-});
+Route::get('/', HomeController::class)->name('home');
 
 
 
@@ -76,8 +74,8 @@ Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.sto
 
 
 /*LIKE*/
-Route::post('/posts/{post}/likes',[LikeController::class, 'store'])->name('posts.likes.store');
-Route::delete('/posts/{post}/likes',[LikeController::class, 'destroy'])->name('posts.likes.destroy');
+Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
+Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('posts.likes.destroy');
 
 
 
