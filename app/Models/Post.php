@@ -18,10 +18,11 @@ class Post extends Model
         'user_id'
     ];
 
-    //UN POST PERTENECE A UN USUARIO
+    //UN POST PERTENECE A UN USUARIO "ESTA FUNCION ME RETORNA EL 'name','username','email' del usuario"
+    //y se esta aplicando en la vista home.blade.php
     public function user()
     {
-        return $this->belongsTo(User::class)->select(['name','username']);
+        return $this->belongsTo(User::class)->select(['name','username','email']);
     }
 
     //RELACION EN LARAVAL

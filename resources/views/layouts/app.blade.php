@@ -21,6 +21,9 @@
 
     <!--CARPETA RESOURCES "PENDIENTES"-->
 
+    <!--ESTILOS LIVEWIRE"-->
+    @livewireStyles
+
 </head>
 
 <body class="bg-gray-100">
@@ -85,6 +88,8 @@
 
 
 
+    <!--SCRIPT LIVEWIRE-->
+    @livewireScripts
 </body>
 
 </html>

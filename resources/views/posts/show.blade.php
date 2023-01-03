@@ -22,7 +22,12 @@
             <div class="p-3 flex items-center gap-4">
                 <!--SOLO LOS QUE ESTAN LOGIADOS PODRAN DAR LIKE-->
                 @auth
-                    <!--PARA VALIDAR SI EL USUARIO YA DIO SU LIKE-->
+
+                 <!--COMPONENTE LIVEWIRE PARA LOS LIKE-->
+                 <livewire:like-post :post="$post"/>
+
+                 
+                    {{--PARA VALIDAR SI EL USUARIO YA DIO SU LIKE
                     @if ($post->checkLike(auth()->user()))
                         <form method="POST" action="{{ route('posts.likes.destroy', $post) }}">
                             @method('DELETE')
@@ -51,10 +56,11 @@
                             </div>
                         </form>
                     @endif
-                    <!--END : PARA VALIDAR SI EL USUARIO YA DIO SU LIKE-->
+                    END : PARA VALIDAR SI EL USUARIO YA DIO SU LIKE--}}
                 @endauth
-                <p class="font-bold">{{ $post->likes->count() }} <span class="font-normal">Likes</span></p>
+                
             </div>
+
 
 
             <div>

@@ -15,7 +15,7 @@
         <div class="w-full md:w-8/12 lg:w-6/12 flex flex-col items-center md:flex-row">
             <div class="w-8/12 lg:w-6/12 px-5">
                 <!--<img src="{{ $user->imagen ? asset('perfiles') . '/' . $user->imagen : asset('img/usuario.svg') }}"
-                                                                alt="Imagen del Usuario"> -->
+                                                                    alt="Imagen del Usuario"> -->
                 <img src="@if (!$user->imagen === '') {{ asset('perfiles') . '/' . $user->imagen }}
                  @else
                  {{ asset('img/usuario.svg') }} @endif"
@@ -29,7 +29,7 @@
                     <!--PARA EDITAR LA INFORMACION DEL USUARIO-->
                     @auth
                         <!--SI EL ID DEL USURIO DE LA BASE DE DATOS ES IGUAL AL USUARIO QUE ESTA LOGEADO
-                                                                                                                                                                                    ENTONCES ES LA MISMA PERSONA , EDITAMOS NUESTROS DATOS-->
+                                                                                                                                                                                            ENTONCES ES LA MISMA PERSONA , EDITAMOS NUESTROS DATOS-->
                         @if ($user->id === auth()->user()->id)
                             <a href="{{ route('perfil.index') }}" class="text-gray-500 hover:text-gray-600 cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -52,7 +52,7 @@
                 <!--BOTONES DE SEGUIR Y DEJAR DE SEGUIR-->
                 @auth
                     <!--SI EL USUARIO ACTUAL ES DIFERENTE AL USUARIO QUE ESTA AUTENTICADO
-                                                                                                ENTONCES SI LO PUEDES SEGUI Y DEJAR DE SEGUIR -->
+                                                                                                        ENTONCES SI LO PUEDES SEGUI Y DEJAR DE SEGUIR -->
                     @if ($user->id !== auth()->user()->id)
                         @if (!$user->siguiendo(auth()->user()))
                             <!--SI NO LO ESTA SIGUIENTE ENTONCES FORMULARIO DE SEGUIR-->
@@ -81,28 +81,8 @@
     <section class="container mx-auto mt-10">
         <h2 class="text-4xl text-center font-black my-10">Mis Publicaciones</h2>
 
-        @if ($posts->count())
-            <!--Imprimiendo los post de los usuarios-->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                @foreach ($posts as $post)
-                    <div>
-                        <!--PASANDO DOS VAIABLES - USER AND POST-->
-                        <a href="{{ route('posts.show', ['post' => $post, 'user' => $post->user]) }}">
-                            <img src="{{ asset('uploads') . '/' . $post->imagen }}" alt="Imagen del post"
-                                {{ $post->imagen }}>
-                        </a>
-                    </div>
-                @endforeach
-
-            </div class="my-10">
-            <!--PAGINACION LARAVEL-->
-            {{ $posts->links('pagination::simple-tailwind') }}
-            <!---->
-        @else
-            <p class="text-gray-600 uppercase text-sm text-center font-bold">
-                Aun no has realizado publicaciones
-            </p>
-        @endif
+        <!--UTILIZANDO EL COMPONENTE-->
+        <x-listar-post :posts="$posts" />
 
     </section>
 @endsection
